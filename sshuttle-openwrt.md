@@ -14,9 +14,7 @@ root@OpenWrt:~# python3 /usr/bin/pip3 install sshuttle
 
 ## Create a wifi access point
 
-I really wanted a wireless access point that tunneled everything on it through sshuttle. To do that, you'll need to add a `Static IP` interface, and give it a unique block of DHCP addresses to give clients. I used `192.168.2.0/24`. The interface should be in the `lan` firewall group and bridge to the `wan` port. 
-
-Next, create a wifi access point that uses your new interface. 
+I really wanted a wireless access point that tunneled everything on it through sshuttle. To do that, you'll need to add a `Static IP` interface, and give it a unique block of DHCP addresses to give clients. I used `192.168.2.0/24`. The interface should be in the `lan` firewall group and bridge to the `wan` port. Next, configure a wifi access point to use your new interface. 
 
 ## Generate an ssh key
 
@@ -32,8 +30,6 @@ Create a file called `sshuttle.conf` that looks something like this:
 
 ```bash
 -D
--v
-0/0
 -l
 0.0.0.0:12345
 --ns-hosts
@@ -42,8 +38,7 @@ Create a file called `sshuttle.conf` that looks something like this:
 ssh -i /root/.ssh/id_rsa
 -r
 you@remote-host
--x
-192.168.0.0/16
+0/0
 ```
 
 # Start sshuttle
@@ -54,7 +49,7 @@ You should be set. To start `sshuttle`, run:
 root@OpenWrt:~# sshuttle @sshuttle.conf
 ```
 
-If everything is working, then everything passing through the router should be tunneled. To restrict tunneling to just the `192.168.2.1/24` subnet, you'll need to add an `iptables` rule:
+Everything passing through the router should now be tunneled. To restrict tunneling to just the `192.168.2.1/24` subnet, you'll need to add an `iptables` rule:
 
 ```bash
 root@OpenWrt:~# iptables -t nat -I sshuttle-12345 -j RETURN \! --src 192.168.2.0/24
