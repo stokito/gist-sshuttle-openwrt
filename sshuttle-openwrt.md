@@ -1,4 +1,4 @@
-# sshuttle on OpenWrt
+# Install and configure sshuttle on OpenWrt
 
 ## Configure extroot
 
