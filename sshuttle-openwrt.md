@@ -29,16 +29,16 @@ root@OpenWrt:~# dropbearkey -t rsa -f /root/.ssh/id_rsa
 Create a file called `sshuttle.conf` that looks something like this: 
 
 ```bash
--D
+0/0
+-v
 -l
 0.0.0.0:12345
---ns-hosts
-192.168.2.1
 -e
 ssh -i /root/.ssh/id_rsa
 -r
-you@remote-host
-0/0
+kyle.king@jump.eecs.ninja
+--ns-host
+192.168.2.1
 ```
 
 # Start sshuttle
