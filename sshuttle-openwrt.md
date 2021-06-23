@@ -15,7 +15,7 @@ Once you have the space, install `sshuttle`:
 ```bash
 root@OpenWrt:~# opkg update
 root@OpenWrt:~# opkg install python3 python3-pip iptables-mod-extra iptables-mod-nat-extra iptables-mod-ipopt
-root@OpenWrt:~# python3 /usr/bin/pip3 install sshuttle
+root@OpenWrt:~# pip3 install sshuttle
 ```
 
 ## Create a wifi access point
@@ -28,6 +28,8 @@ Generate an ssh key to add to authorized keys on the remote server:
 
 ```bash
 root@OpenWrt:~# dropbearkey -t rsa -f /root/.ssh/id_rsa
+root@OpenWrt:~# dropbearkey -y -f .ssh/id_rsa | grep "^ssh-rsa " > .ssh/id_rsa.pub
+root@OpenWrt:~# scp .ssh/id_rsa.pub kyle.king@jump.eecs.ninja:.ssh/authorized_keys
 ```
 
 ## Create sshuttle.conf
