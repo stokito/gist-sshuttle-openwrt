@@ -1,5 +1,11 @@
 # Install and configure sshuttle on OpenWrt
 
+Note that ANY flash update will wreck the extroot configuration. I didn't realize that and had to:
+
+* Take the USB out and reboot so overlay would detach
+* Repartition/format the USB
+* [Set up extroot from scratch](https://openwrt.org/docs/guide-user/additional-software/extroot_configuration).
+
 ## Configure extroot
 
 Before you can install `sshuttle`, you'll need to add some space. Pop a USB drive in the back of the router and follow [these directions](https://openwrt.org/docs/guide-user/additional-software/extroot_configuration).
