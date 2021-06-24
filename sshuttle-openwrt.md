@@ -55,6 +55,8 @@ You should be set. To start `sshuttle`, run:
 
 ```bash
 root@OpenWrt:~# sshuttle @sshuttle.conf
+- or - 
+root@OpenWrt:~# screen -d -m sshuttle @sshuttle.conf 
 ```
 
 Everything passing through the router should now be tunneled. To restrict tunneling to just the `192.168.2.1/24` subnet, you'll need to add an `iptables` rule:
