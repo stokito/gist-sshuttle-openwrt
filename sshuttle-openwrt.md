@@ -32,7 +32,7 @@ Generate an ssh key to add to authorized keys on the remote server:
 
 ```sh
 dropbearkey -t ed_25519 -f /root/.ssh/id_ed25519
-dropbearkey -y -f .ssh/id_ed25519 | grep "^ssh- " > .ssh/id_ed25519.pub
+dropbearkey -y -f .ssh/id_ed25519 | grep "^ssh-" > .ssh/id_ed25519.pub
 scp .ssh/id_ed25519.pub kyle.king@jump.eecs.ninja:.ssh/authorized_keys
 ```
 
